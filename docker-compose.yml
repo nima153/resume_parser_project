@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: resume-parser-postgres
+    environment:
+      POSTGRES_DB: resume_parser
+      POSTGRES_USER: resume_user
+      POSTGRES_PASSWORD: resume_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - resume_parser_data:/var/lib/postgresql/data
+
+volumes:
+  resume_parser_data:

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}{{ resume.name }} | Resume Atlas{% endblock %}
+{% block content %}
+<a class="back-link" href="{{ url_for('index') }}"><- Back to profiles</a><section class="detail-head"><div class="avatar large">{{ resume.name[:2].upper() }}</div><div><p class="eyebrow">Parsed profile</p><h1>{{ resume.name }}</h1><p class="contact-line">{{ resume.email or 'Email unavailable' }} {% if resume.phone %} / {{ resume.phone }}{% endif %}</p></div></section>
+<div class="detail-grid"><section class="detail-panel"><div class="panel-kicker">Signals</div><h2>Skills</h2><div class="detail-tags">{% for skill in resume.skills %}<span class="tag">{{ skill }}</span>{% else %}<span class="muted">No skills detected.</span>{% endfor %}</div><h2>Education</h2><ul>{% for item in resume.education %}<li>{{ item }}</li>{% else %}<li class="muted">No education entries detected.</li>{% endfor %}</ul><h2>Experience</h2><ul>{% for item in resume.experience %}<li>{{ item }}</li>{% else %}<li class="muted">No dated experience entries detected.</li>{% endfor %}</ul></section><section class="detail-panel raw"><div class="panel-kicker">Source</div><h2>Extracted text</h2><pre>{{ resume.raw_text }}</pre></section></div>
+{% endblock %}
